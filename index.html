@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">    <meta charset="UTF-8">
+    <title>音乐播放器</title>
+    <link href="assets/icon.css" rel="stylesheet" />
+    <link href="assets/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!--居中内容-->
+    <div class="warp">
+        <div class="print-box">
+            <span class="print"></span>
+        </div>
+        <div class="zhezhao">
+            <div class="alert">
+                <div class="gt"></div>
+                <div class="msg"></div>
+                <div></div>
+            </div>
+            <div class="record">
+                <div class="titles">历史记录</div>
+                <div class="record-content"></div>
+                <div class="record-button">
+                    <span>清除</span><span>关闭</span>
+                </div>
+            </div>
+            <div class="song-list">
+                <div class="titles">喜欢的音乐</div>
+                <div class="song-list-content"></div>
+                <div class="song-list-button"><span>关闭</span></div>
+            </div>
+            <div class="song-info">
+                <div class="title">歌曲信息</div>
+                <div class="info-content">
+                    <div> <label>歌名</label> <strong>{{ name }}</strong> </div>
+                    <div> <label>歌手</label> <strong>{{ gs }}</strong> </div>
+                    <div> <label>专辑</label> <strong>{{ tag }}</strong> </div>
+                    <div> <label>时长</label> <strong>{{ outEnd }}</strong> </div>
+                    <div> <label>添加日期</label> <strong>{{ pubtime }}</strong> </div>
+                    <div> <label>下载</label> <strong @click="dw(event)" v-html="download">{{ download }}</strong> </div>
+                </div>
+                <div class="button">
+                    <span>关闭</span>
+                </div>
+            </div>
+            <div class="setting">
+                <div class="title">全局设置</div>
+                <div class="info-content">
+                    <span>QQ: <strong>[可以根据QQ音乐的喜好,推荐音乐]</strong></span>
+                    <input name="qq"/>
+                    <span>主色调: <strong>[大部分是边框色]</strong></span>
+                    <input name="qq"/>
+                </div>
+                <div class="button max">关 于</div>
+                <div class="button">关闭</div>
+                <div class="button">保存</div>
+            </div>
+
+            <div class="info">
+                <div class="title">关于</div>
+                <div class="info-content">
+                    <strong>免责声明:</strong>
+                    <p>编写初衷纯属为了练习代码!绝非恶意破解QQ音乐 VIP,且绝不用于商业用途与大规模宣传!如果非本人在使用,请自觉遵守以上规则,否则带来的一切责任 本人概不承担!</p>
+                    <p>本程序基于nodejs,实现远程缓存法 捕获QQ无损以及高品质音乐.基于抓包技术得到各种接口实现以下功能.</p>
+                    <strong>重点声明:</strong><br />
+                    <font color="red" size="3">看了之后继续使用本程序,代表你接受 免责声明!</font><br /><br />
+                    <strong>联系方式及补充:</strong>
+                    <div>作者  :  史莱姆</div>
+                    <div>企鹅  :  478889187</div>
+                    <div>补充:如果本程序造成了较为严重的经济损失!请联系作者关闭服务端.</div><br />
+                    <strong>采用的编程语言及框架:</strong>
+                    <p>JavaScript[es5,es6], Vue, NodeJs, HTML[5], CSS[3]</p>
+                    <strong>功能列表:</strong>
+                    <ol>
+                        <li>播放音乐</li>
+                        <li>下载无损及高品质音乐</li>
+                        <li>收藏音乐</li>
+                        <li>历史记录</li>
+                        <li>歌曲封面</li>
+                        <li>搜索音乐</li>
+                        <li>搜索联想</li>
+                        <li>歌词动画</li>
+                    </ol>
+                </div>
+                <div class="button">关闭</div>
+            </div>
+        </div>
+        <!--前面的内容区域-->
+        <div class="row">
+            <!--提示栏目-->
+            <!--顶部区域-->
+            <header>
+                <span class="i-time"></span>
+                <span class="name"><a href="/">Failed SONG TITLE</a></span>
+                <span class="i-setting"></span>
+            </header>
+            <!--中间内容区域-->
+            <div class="content">
+                <ul class="movebox">
+                    <!--//////-->
+                    <li>
+                        <div class="title" ></div>
+                        <div style="text-align: center;display: flex;justify-content: center;align-items: center;height: 50vh;font-size: 2rem">
+                            推荐歌曲页面开发中...
+                        </div>
+                    </li>
+                    <!--//////-->
+                    <li>
+                        <div class="title" >
+                            <div class="title-span">Failed SONG TAG</div>
+                            <div>
+                                <span><s>HQ</s></span>
+                                <span><s>音效 on</s></span>
+                            </div>
+                        </div>
+                        <div class="round-box">
+                            <div class="round">
+                                <img src="assets/imager/backg.jpg" />
+                            </div>
+                        </div>
+                    </li>
+                    <!--//////-->
+                    <li class="gc">
+                        <div class="title">
+                            <div class="on">上一句</div>
+                            <div class="down">下一句</div>
+                            <span>00:00</span>
+                            <div class="min-img play right"></div>
+                        </div>
+                        <ul><li><font size="5" data-content="未搜索到歌词!!!">
+                            未搜索到歌词!!!
+                        </font></li></ul>
+                    </li>
+                    <!--//////-->
+                    <li class="search-box">
+                        <div class="title"></div>
+                        <input class="search" placeholder="歌名/歌手/mv/关键词" /> <img class="search-img" src="assets/imager/search.png"/>
+                        <ul class="search-list">
+                        </ul>
+                        <div class="search-content"></div>
+                    </li>
+                </ul>
+            </div>
+            <!--控制区域-->
+            <div class="console">
+                <div class="Loading">
+                    <div class="rounds-all">
+                        <span data-t="0" class="s" ></span>
+                        <span data-t="1"></span>
+                        <span data-t="2"></span>
+                        <span data-t="3"></span>
+                    </div>
+                    <div class="TimeBox">
+                        <span class="start">00:00</span>
+                        <span class="TimeLoading">
+                            <span class="outTime">
+                                <span class="TimeRound"></span>
+                            </span>
+                        </span>
+                        <span class="end">00:00</span>
+                    </div>
+                </div>
+                <div class="direction">
+                    <span class="i-rand-play"></span>
+                    <span class="i-page-left"></span>
+                    <span class="i-play"></span>
+                    <span class="i-page-right"></span>
+                    <span class="i-song-list"></span>
+                </div>
+                <footer>
+                    <span class="i-love-air"></span>
+                    <span class="i-delete-air"></span>
+                    <span class="i-info"></span>
+                    <span class="i-voice_3"></span>
+                </footer>
+            </div>
+
+        </div>
+        <!--背景模糊图-->
+        <div class="music-backg">
+            <img src="assets/imager/backg.jpg" />
+        </div>
+    </div>
+    <audio controls="controls"></audio>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="assets/javascript.js"></script>
